@@ -1,6 +1,4 @@
-package com.javarush.pavlichenko.encoder.cipher.exceptions;
-
-import java.io.IOException;
+package com.javarush.pavlichenko.encoder.exceptions;
 
 public class UnknownCharacterException extends RuntimeException {
     public UnknownCharacterException() {

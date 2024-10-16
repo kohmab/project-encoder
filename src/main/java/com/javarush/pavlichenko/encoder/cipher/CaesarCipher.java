@@ -1,7 +1,9 @@
 package com.javarush.pavlichenko.encoder.cipher;
 
 
-import com.javarush.pavlichenko.encoder.cipher.exceptions.UnknownCharacterException;
+import com.javarush.pavlichenko.encoder.exceptions.ShiftNotSetException;
+import com.javarush.pavlichenko.encoder.exceptions.UnknownCharacterException;
+import com.javarush.pavlichenko.encoder.exceptions.WrongFileException;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
@@ -22,18 +24,18 @@ public class CaesarCipher implements Cipher {
 
 
     @Override
-    public void encode(InputStream input, OutputStream output) {
+    public void encode(InputStream input, OutputStream output) throws ShiftNotSetException, UnknownCharacterException, WrongFileException {
         checkConsistency();
         proceed(shift, input, output);
     }
 
     @Override
-    public void decode(InputStream input, OutputStream output) {
+    public void decode(InputStream input, OutputStream output) throws ShiftNotSetException, UnknownCharacterException, WrongFileException {
         checkConsistency();
         proceed(-shift, input, output);
     }
 
-    private void proceed(Integer signedShift, InputStream input, OutputStream output) {
+    private void proceed(Integer signedShift, InputStream input, OutputStream output) throws WrongFileException {
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(input));
              BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(output))) {
             while (reader.ready()) {
@@ -43,7 +45,7 @@ public class CaesarCipher implements Cipher {
                 writer.newLine();
             }
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new WrongFileException(e);
         }
     }
 
@@ -64,9 +66,9 @@ public class CaesarCipher implements Cipher {
         return alphabet.getChar(val);
     }
 
-    private void checkConsistency() throws IllegalStateException {
+    private void checkConsistency() throws ShiftNotSetException {
         if (isNull(shift)) {
-            throw new IllegalStateException("you must set shift value");
+            throw new ShiftNotSetException();
         }
 
 
