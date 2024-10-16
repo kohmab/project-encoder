@@ -24,7 +24,7 @@ public class CommandExceptionResolverImpl implements CommandExceptionResolver {
             return CommandHandlingResult.of(Strings.TEMPLATE_FAIL_WRONG_FILE.formatted(ex.getMessage()));
 
         if (ex instanceof UnknownCharacterException)
-            return CommandHandlingResult.of(Strings.TEMPLATE_FAIL_UNKNOWN_CHARACTER);
+            return CommandHandlingResult.of(Strings.TEMPLATE_FAIL_UNKNOWN_CHARACTER.formatted(ex.getMessage()));
 
         return null;
     }

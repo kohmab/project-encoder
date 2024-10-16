@@ -23,7 +23,7 @@ public class Strings {
     public final static String TEMPLATE_FAIL_WRONG_FILE = "Wrong file specified (%s).\n";
     public final static String TEMPLATE_FAIL_SHIFT_NOT_SET = "Set shift first by %s command.\n".formatted(SET_SHIFT_COMMAND);
     public final static String TEMPLATE_FAIL_EQUAL_PATHS = "Input and output path are equal.\n";
-    public final static String TEMPLATE_FAIL_UNKNOWN_CHARACTER = "The input file contains characters that are not part of the alphabet.\n" +
+    public final static String TEMPLATE_FAIL_UNKNOWN_CHARACTER = "The input file contains character %s that is not part of the alphabet.\n" +
             "Use %s command to see supported characters.\n".formatted(SHOW_ALPHABET_COMMAND);
 
     public final static String TEMPLATE_ENTER_INPUT_FILE_PATH = "Enter input file path...";
