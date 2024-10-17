@@ -23,7 +23,7 @@ public class CaesarCipher implements Cipher {
 
     @Getter
     @Setter
-    @Value("1")
+    @Value("${caesarCipher.defaultShift}")
     private Integer shift;
 
 
